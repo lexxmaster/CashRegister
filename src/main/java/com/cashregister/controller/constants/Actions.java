@@ -1,0 +1,20 @@
+package com.cashregister.controller.constants;
+
+public class Actions {
+    public static final String LOGIN = "login";
+    public static final String LOGOUT = "logout";
+    public static final String CHANGE_LANGUAGE = "lang";
+    public static final String CHECKOUT_CREATE = "checkout_create";
+    public static final String CHECKOUT_CLOSE = "checkout_close";
+    public static final String ORDER_LIST = "order_list";
+    public static final String ORDER_CREATE = "create_order";
+    public static final String ORDER_OPEN = "order_open";
+    public static final String ORDER_CLOSE = "order_close";
+    public static final String ORDER_DELETE = "order_delete";
+    public static final String ORDER_GOODS_ADD = "order_goods_add";
+    public static final String ORDER_GOODS_AMOUNT = "order_goods_amount";
+    public static final String ORDER_GOODS_DELETE = "order_goods_delete";
+    public static final String GOODS_LIST = "goods_list";
+    public static final String GOODS_CREATE = "goods_create";
+    public static final String HOME = "home";
+}
