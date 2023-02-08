@@ -12,4 +12,6 @@ public class Paths {
     public static final String ERROR_500 = "/jsp/error_500.jsp";
     public static final String ACCESS_DENIED = "/jsp/access_denied.jsp";
 
+    public static final String X_REPORT = "/jsp/x_report.jsp";
+    public static final String Z_REPORT = "/jsp/z_report.jsp";
 }

@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class OrderDAO extends AbstractDAO<Long, Order>{
-    private static final String SELECT_ALL_ORDERS = "SELECT orders.id, orders.checkout_shift_id, orders.warehouses_id, orders.order_date, orders.closed, orders.user_id FROM orders AS orders;";
-    private static final String SELECT_ORDERS_BY_CHECKOUT = "SELECT orders.id, orders.checkout_shift_id, orders.warehouses_id, orders.order_date, orders.closed, orders.user_id FROM orders AS orders WHERE orders.checkout_shift_id = ?;";
+    private static final String SELECT_ALL_ORDERS = "SELECT orders.id, orders.checkout_id, orders.warehouses_id, orders.order_date, orders.closed, orders.user_id FROM orders AS orders;";
+    private static final String SELECT_ORDERS_BY_CHECKOUT = "SELECT orders.id, orders.checkout_id, orders.warehouses_id, orders.order_date, orders.closed, orders.user_id FROM orders AS orders WHERE orders.checkout_id = ?;";
     private static final String SELECT_ORDER_GOODS = "SELECT goods.good_id, goods.amount, goods.price, goods.total FROM order_goods AS goods WHERE goods.order_id = ?;";
-    private static final String SELECT_ORDER_BY_ID = "SELECT orders.id, orders.checkout_shift_id, orders.warehouses_id, orders.order_date, orders.closed, orders.user_id FROM orders AS orders WHERE orders.id = ?;";
-    private static final String CREATE_ORDER = "INSERT INTO orders (warehouses_id, checkout_shift_id, order_date, closed, user_id) values (?,?,?,?,?);";
+    private static final String SELECT_ORDER_BY_ID = "SELECT orders.id, orders.checkout_id, orders.warehouses_id, orders.order_date, orders.closed, orders.user_id FROM orders AS orders WHERE orders.id = ?;";
+    private static final String CREATE_ORDER = "INSERT INTO orders (warehouses_id, checkout_id, order_date, closed, user_id) values (?,?,?,?,?);";
     private static final String UPDATE_ORDER = "UPDATE orders SET warehouses_id = ?, order_date = ?, closed = ? WHERE id = ?;";
     private static final String CREATE_ORDER_GOODS = "INSERT INTO order_goods (order_id, good_id, amount, price, total) values (?,?,?,?,?);";
     private static final String UPDATE_ORDER_GOODS = "UPDATE order_goods SET amount = ?, price = ?, total = ? WHERE order_id = ? AND good_id = ?;";

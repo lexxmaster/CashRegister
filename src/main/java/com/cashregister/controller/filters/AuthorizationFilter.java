@@ -48,6 +48,7 @@ public class AuthorizationFilter implements Filter {
                 return;
             }
             session.setAttribute(Attributes.LOGIN, user.getLogin());
+            session.setAttribute(Attributes.USER_ID, user.getId());
             session.setAttribute(Attributes.ROLE, user.getRole());
 
             if (nonNull(action)) { // a little redundant

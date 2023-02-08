@@ -9,6 +9,7 @@ import com.cashregister.controller.commands.orders.*;
 import com.cashregister.controller.commands.orders.goods.OrderGoodsAdd;
 import com.cashregister.controller.commands.orders.goods.OrderGoodsAmount;
 import com.cashregister.controller.commands.orders.goods.OrderGoodsDelete;
+import com.cashregister.controller.commands.report.XReportView;
 import com.cashregister.controller.constants.Actions;
 
 public class CommandFactory {
@@ -63,6 +64,9 @@ public class CommandFactory {
                 break;
             case Actions.GOODS_CREATE:
                 command = new GoodsCreate();
+                break;
+            case Actions.X_REPORT:
+                command = new XReportView();
                 break;
             default:
                 command = new EmptyAction();

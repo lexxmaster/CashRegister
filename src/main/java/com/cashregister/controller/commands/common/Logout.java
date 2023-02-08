@@ -19,6 +19,7 @@ public class Logout implements ICommand {
         final HttpSession session = httpRequest.getSession();
 
         session.removeAttribute(Attributes.LOGIN);
+        session.removeAttribute(Attributes.USER_ID);
         session.removeAttribute(Attributes.ROLE);
         session.removeAttribute(Attributes.WAREHOUSE);
         session.removeAttribute(Attributes.CHECKOUT_SHIFT);

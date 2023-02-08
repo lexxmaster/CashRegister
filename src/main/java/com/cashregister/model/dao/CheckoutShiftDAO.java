@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class CheckoutShiftDAO extends AbstractDAO<Long, CheckoutShift>{
-    private static final String SELECT_ALL_CHECKOUT = "SELECT checkout.id, checkout.checkout_shift_date, checkout.closed, checkout.warehouse_id, checkout.user_id FROM cash_register.checkout_shift AS checkout;";
-    private static final String SELECT_CHECKOUT_BY_ID = "SELECT checkout.id, checkout.checkout_shift_date, checkout.closed, checkout.warehouse_id, checkout.user_id FROM cash_register.checkout_shift AS checkout WHERE checkout.id = ?;";
-    private static final String SELECT_OPEN_CHECKOUT_BY_USER = "SELECT checkout.id, checkout.checkout_shift_date, checkout.closed, checkout.warehouse_id, checkout.user_id FROM cash_register.checkout_shift AS checkout WHERE checkout.warehouse_id = ? AND checkout.user_id = ? AND checkout.closed = ?";
-    private static final String CREATE_CHECKOUT = "INSERT INTO checkout_shift (checkout_shift_date, closed, warehouse_id, user_id) VALUES (?, ?, ?, ?);";
+    private static final String SELECT_ALL_CHECKOUT = "SELECT checkout.id, checkout.checkout_date, checkout.closed, checkout.warehouse_id, checkout.user_id FROM cash_register.checkout_shift AS checkout;";
+    private static final String SELECT_CHECKOUT_BY_ID = "SELECT checkout.id, checkout.checkout_date, checkout.closed, checkout.warehouse_id, checkout.user_id FROM cash_register.checkout_shift AS checkout WHERE checkout.id = ?;";
+    private static final String SELECT_OPEN_CHECKOUT_BY_USER = "SELECT checkout.id, checkout.checkout_date, checkout.closed, checkout.warehouse_id, checkout.user_id FROM cash_register.checkout_shift AS checkout WHERE checkout.warehouse_id = ? AND checkout.user_id = ? AND checkout.closed = ?";
+    private static final String CREATE_CHECKOUT = "INSERT INTO checkout_shift (checkout_date, closed, warehouse_id, user_id) VALUES (?, ?, ?, ?);";
     private static final String UPDATE_CHECKOUT = "UPDATE checkout_shift SET closed = ? WHERE id = ?;";
 
     @Override

@@ -19,7 +19,7 @@ public class TableFields {
     public static final String ORDER_GOODS_TOTAL = "total";
 
     public static final String ORDER_WAREHOUSES_ID = "warehouses_id";
-    public static final String ORDER_CHECKOUT_ID = "checkout_shift_id";
+    public static final String ORDER_CHECKOUT_ID = "checkout_id";
     public static final String ORDER_ORDER_DATE = "order_date";
     public static final String ORDER_CLOSED = "closed";
     public static final String ORDER_USER_ID = "user_id";
@@ -33,7 +33,12 @@ public class TableFields {
     public static final String WAREHOUSES_NAME = "warehouses_name";
 
     public static final String CHECKOUT_WAREHOUSE_ID = "warehouse_id";
-    public static final String CHECKOUT_DATE = "checkout_shift_date";
+    public static final String CHECKOUT_DATE = "checkout_date";
     public static final String CHECKOUT_CLOSED = "closed";
     public static final String CHECKOUT_USER_ID = "user_id";
+
+    public static final String REPORT_CHECK_AMOUNT = "check_amount";
+    public static final String REPORT_SUM = "sum";
+    public static final String REPORT_USER_ID = "user_id";
+    public static final String REPORT_CHECKOUT_ID = "checkout_id";
 }

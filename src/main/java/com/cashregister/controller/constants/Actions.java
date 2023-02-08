@@ -16,5 +16,9 @@ public class Actions {
     public static final String ORDER_GOODS_DELETE = "order_goods_delete";
     public static final String GOODS_LIST = "goods_list";
     public static final String GOODS_CREATE = "goods_create";
+
+    public static final String X_REPORT = "x_report_view";
+    public static final String Z_REPORT_CREATE = "z_report_create";
+    public static final String Z_REPORT_VIEW = "z_report_view";
     public static final String HOME = "home";
 }

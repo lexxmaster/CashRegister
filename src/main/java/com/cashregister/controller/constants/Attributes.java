@@ -2,6 +2,7 @@ package com.cashregister.controller.constants;
 
 public class Attributes {
     public static final String LOGIN = "login";
+    public static final String USER_ID = "user_id";
     public static final String ROLE = "role";
     public static final String LANG = "lang";
     public static final String CURRENT_JSP = "current_jsp";
@@ -11,4 +12,5 @@ public class Attributes {
     public static final String CHECKOUT_SHIFT = "checkout_shift";
     public static final String ORDER = "order";
     public static final String GOODS_LIST = "goodslist";
+    public static final String REPORT = "report";
 }

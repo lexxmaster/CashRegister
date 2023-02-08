@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="ctg"  uri="customtags"%>
-<%@ taglib prefix="cust_tag" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="ctgf" tagdir="/WEB-INF/tags" %>
 
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="language"/>
@@ -36,7 +36,28 @@
     </tr>
     <tbody>
         <c:forEach var="order" items="${orders}">
-            <cust_tag:order order_object="${order}"></cust_tag:order>
+            <tr>
+                <td><fmt:formatDate value="${order.date}" type="both"/></td>
+                <td>${order.warehouse}</td>
+                <td>${order.total}</td>
+                <td>${order.user.login}</td>
+                <td><ctg:boolean_format check="${order.closed}"/></td>
+                <td>
+                    <form method="get" action="controller">
+                        <input type="hidden" name="action" value="order_open">
+                        <input type="hidden" name="order_id" value="${order.id}">
+                        <input class="button" type="submit" value=<fmt:message key="orders.table.edit"/>>
+                    </form>
+                </td>
+                <td>
+                    <form method="get" action="controller">
+                        <input type="hidden" name="action" value="order_delete">
+                        <input type="hidden" name="order_id" value="${order.id}">
+                        <input class="button" type="submit" value=<fmt:message key="orders.table.delete"/>>
+                    </form>
+                </td>
+            </tr>
+
         </c:forEach>
     </tbody>
 </table>
