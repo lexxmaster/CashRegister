@@ -50,6 +50,11 @@ public class Home implements ICommand {
                 result.setPath(Paths.CONTROLLER + Actions.GOODS_LIST);
                 break;
             }
+            case ADMIN -> {
+                result.setPath(Paths.CONTROLLER + Actions.USER_LIST);
+                break;
+            }
+
         }
         return result;
     }

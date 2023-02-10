@@ -10,7 +10,9 @@ public class Attributes {
     public static final String NUMBER_OF_PAGES = "noOfPages";
     public static final String WAREHOUSE = "warehouse";
     public static final String CHECKOUT_SHIFT = "checkout_shift";
+    public static final String ORDER_LIST = "orders";
     public static final String ORDER = "order";
     public static final String GOODS_LIST = "goodslist";
+    public static final String USER_LIST = "userlist";
     public static final String REPORT = "report";
 }

@@ -10,8 +10,10 @@ import java.util.Optional;
 public class OrderDAO extends AbstractDAO<Long, Order>{
     private static final String SELECT_ALL_ORDERS = "SELECT orders.id, orders.checkout_id, orders.warehouses_id, orders.order_date, orders.closed, orders.user_id FROM orders AS orders;";
     private static final String SELECT_ORDERS_BY_CHECKOUT = "SELECT orders.id, orders.checkout_id, orders.warehouses_id, orders.order_date, orders.closed, orders.user_id FROM orders AS orders WHERE orders.checkout_id = ?;";
+    private static final String SELECT_ORDERS_BY_CHECKOUT_PAGE = "SELECT orders.id, orders.checkout_id, orders.warehouses_id, orders.order_date, orders.closed, orders.user_id FROM orders AS orders WHERE orders.checkout_id = ? limit ?, ?;";
     private static final String SELECT_ORDER_GOODS = "SELECT goods.good_id, goods.amount, goods.price, goods.total FROM order_goods AS goods WHERE goods.order_id = ?;";
     private static final String SELECT_ORDER_BY_ID = "SELECT orders.id, orders.checkout_id, orders.warehouses_id, orders.order_date, orders.closed, orders.user_id FROM orders AS orders WHERE orders.id = ?;";
+    private static final String GET_RECORDS_COUNT = "SELECT count(orders.id) AS orders_count FROM orders AS orders;";
     private static final String CREATE_ORDER = "INSERT INTO orders (warehouses_id, checkout_id, order_date, closed, user_id) values (?,?,?,?,?);";
     private static final String UPDATE_ORDER = "UPDATE orders SET warehouses_id = ?, order_date = ?, closed = ? WHERE id = ?;";
     private static final String CREATE_ORDER_GOODS = "INSERT INTO order_goods (order_id, good_id, amount, price, total) values (?,?,?,?,?);";
@@ -59,6 +61,40 @@ public class OrderDAO extends AbstractDAO<Long, Order>{
         try {
             stmt = con.prepareStatement(SELECT_ORDERS_BY_CHECKOUT);
             stmt.setLong(1, checkoutShift.getId());
+
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                Order order = createOrderEntity(resultSet);
+                findOrderGoods(order, con);
+                order.updateTotal();
+                orderList.add(order);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                con.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return orderList;
+    }
+
+    public List<Order> findByCheckoutByPage(CheckoutShift checkoutShift, int offset, int recordsPerPage) {
+        List<Order> orderList = new ArrayList<>();
+        Connection con = DBManager.getInstance().getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement(SELECT_ORDERS_BY_CHECKOUT_PAGE);
+            stmt.setLong(1, checkoutShift.getId());
+            stmt.setInt(2, offset);
+            stmt.setInt(3, recordsPerPage);
 
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
@@ -144,7 +180,29 @@ public class OrderDAO extends AbstractDAO<Long, Order>{
 
     @Override
     public int getRecordsCount() {
-        return 0;
+        Connection con = DBManager.getInstance().getConnection();
+        Statement stmt = null;
+        int count = 0;
+        try {
+            stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery(GET_RECORDS_COUNT);
+            while (resultSet.next()) {
+                count = resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                con.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return count;
     }
 
     @Override

@@ -61,6 +61,29 @@
         </c:forEach>
     </tbody>
 </table>
+<c:if test="${currentPage != 1}">
+    <td><a href="controller?action=order_list&page=${currentPage - 1}"><fmt:message key="table.previous"/></a></td>
+</c:if>
+
+
+<table border="1" cellpadding="5" cellspacing="5">
+    <tr>
+        <c:forEach begin="1" end="${noOfPages}" var="i">
+            <c:choose>
+                <c:when test="${currentPage eq i}">
+                    <td>${i}</td>
+                </c:when>
+                <c:otherwise>
+                    <td><a href="controller?action=order_list&page=${i}">${i}</a></td>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+    </tr>
+</table>
+
+<c:if test="${currentPage lt noOfPages}">
+    <td><a href="controller?action=order_list&page=${currentPage + 1}"><fmt:message key="table.next"/></a></td>
+</c:if>
 </body>
 </html>
 

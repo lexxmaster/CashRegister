@@ -1,5 +1,6 @@
 package com.cashregister.model.dao;
 
+import com.cashregister.model.entity.Goods;
 import com.cashregister.model.entity.Role;
 import com.cashregister.model.entity.User;
 
@@ -10,8 +11,9 @@ import java.util.Optional;
 
 public class UserDAO extends AbstractDAO<Long, User> {
     private static final String SELECT_ALL_USER = "SELECT users.id, users.login, users.passwd, roles.roles_name AS role FROM users AS users LEFT JOIN roles AS roles ON users.roles_id = roles.id;";
+    private static final String SELECT_ALL_USER_PAGE = "SELECT users.id, users.login, users.passwd, roles.roles_name AS role FROM users AS users LEFT JOIN roles AS roles ON users.roles_id = roles.id limit ?, ?;";
     private static final String SELECT_USER_BY_ID = "SELECT users.id, users.login, users.passwd, roles.roles_name AS role FROM users AS users LEFT JOIN roles AS roles ON users.roles_id = roles.id WHERE users.id = ?;";
-
+    private static final String GET_RECORDS_COUNT = "SELECT count(users.id) AS users_count FROM users AS users;";
     private static final String SELECT_USER_BY_LOGIN = "SELECT users.id, users.login, users.passwd, roles.roles_name AS role FROM users AS users LEFT JOIN roles AS roles ON users.roles_id = roles.id WHERE users.login = ?;";
     private static final String CREATE_USER = "INSERT INTO users (login, passwd, roles_id) values (?,?,?);";
     private static final String UPDATE_USER = "UPDATE users SET login = ?, passwd = ?, roles_id = ? WHERE id = ?;";
@@ -45,6 +47,35 @@ public class UserDAO extends AbstractDAO<Long, User> {
         return userList;
     }
 
+    public List<User> findAllByPage(int offset, int recordsPerPage) {
+        List<User> usersList = new ArrayList<>();
+        Connection con = DBManager.getInstance().getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement(SELECT_ALL_USER_PAGE);
+            stmt.setInt(1, offset);
+            stmt.setInt(2, recordsPerPage);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                User user = createUser(resultSet);
+                usersList.add(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                con.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return usersList;
+    }
     private User createUser(ResultSet resultSet) throws SQLException {
         long id = resultSet.getLong("id");
         String login = resultSet.getString(TableFields.USERS_LOGIN);
@@ -88,7 +119,29 @@ public class UserDAO extends AbstractDAO<Long, User> {
 
     @Override
     public int getRecordsCount() {
-        return 0;
+        Connection con = DBManager.getInstance().getConnection();
+        Statement stmt = null;
+        int count = 0;
+        try {
+            stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery(GET_RECORDS_COUNT);
+            while (resultSet.next()) {
+                count = resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                con.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return count;
     }
 
     @Override

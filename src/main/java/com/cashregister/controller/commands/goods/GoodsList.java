@@ -14,13 +14,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static com.cashregister.controller.constants.Common.RECORDS_PER_PAGE;
 import static java.util.Objects.nonNull;
 
 public class GoodsList implements ICommand {
     @Override
     public CommandResult execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int page = 1;
-        int recordsPerPage = 10;
+        int recordsPerPage = RECORDS_PER_PAGE;
         if (nonNull(req.getParameter(Parameters.PAGE))) {
             page = Integer.parseInt(req.getParameter(Parameters.PAGE));
         }

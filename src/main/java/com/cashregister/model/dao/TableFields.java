@@ -38,7 +38,7 @@ public class TableFields {
     public static final String CHECKOUT_USER_ID = "user_id";
 
     public static final String REPORT_CHECK_AMOUNT = "check_amount";
-    public static final String REPORT_SUM = "sum";
+    public static final String REPORT_SUM = "check_sum";
     public static final String REPORT_USER_ID = "user_id";
     public static final String REPORT_CHECKOUT_ID = "checkout_id";
 }

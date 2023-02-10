@@ -20,9 +20,9 @@
             <div class="w3-modal-content">
                 <div class="w3-container">
                     <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                    <p><fmt:message key="goods.creation.title"/></p>
+                    <p>Some text. Some text. Some text.</p>
                     <form method="post" action="controller">
-                        <input type="hidden" name="action" value="goods_create">
+                        <input type="hidden" name="action" value="user_create">
                         <label for="goods_name"><fmt:message key="goods.creation.name"/></label>
                         <input type="text" required id="goods_name" name="goods_name"><br>
                         <label for="goods_scancode"><fmt:message key="goods.creation.scancode"/></label>
@@ -40,19 +40,15 @@
 </div>
 <table>
     <tr>
-        <th><fmt:message key="goods.table.name"/></th>
-        <th><fmt:message key="goods.table.scancode"/></th>
-        <th><fmt:message key="goods.table.weight"/></th>
-        <th><fmt:message key="goods.table.price"/></th>
-        <th><fmt:message key="goods.table.amount"/></th>
+        <th><fmt:message key="users.table.login"/></th>
+        <th><fmt:message key="users.table.role"/></th>
     </tr>
     <tbody>
-    <c:forEach var="goods" items="${goodslist}">
+    <c:forEach var="user" items="${userlist}">
         <tr>
-            <td>${goods.name}</td>
-            <td>${goods.scancode}</td>
-            <td>${goods.weight}</td>
-            <td>${goods.price}</td>
+            <td>${user.login}</td>
+            <td>${user.role}</td>
+
      <%--       <td>${goods.amount}</td> --%>
 
         </tr>
@@ -61,7 +57,7 @@
 </table>
 
 <c:if test="${currentPage != 1}">
-    <td><a href="controller?action=goods_list&page=${currentPage - 1}"><fmt:message key="table.previous"/></a></td>
+    <td><a href="controller?action=user_list&page=${currentPage - 1}"><fmt:message key="table.previous"/></a></td>
 </c:if>
 
 
@@ -73,7 +69,7 @@
                     <td>${i}</td>
                 </c:when>
                 <c:otherwise>
-                    <td><a href="controller?action=goods_list&page=${i}">${i}</a></td>
+                    <td><a href="controller?action=user_list&page=${i}">${i}</a></td>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
@@ -81,7 +77,7 @@
 </table>
 
 <c:if test="${currentPage lt noOfPages}">
-    <td><a href="controller?action=goods_list&page=${currentPage + 1}"><fmt:message key="table.next"/></a></td>
+    <td><a href="controller?action=user_list&page=${currentPage + 1}"><fmt:message key="table.next"/></a></td>
 </c:if>
 </body>
 </html>

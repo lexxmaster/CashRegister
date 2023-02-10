@@ -21,9 +21,9 @@ public class ChangeLanguage implements ICommand {
         }
         setLanguageCookie(resp, lang);
 
-        final HttpServletRequest httpRequest = (HttpServletRequest) req;
-        final HttpSession session = httpRequest.getSession();
-        String page = (String) session.getAttribute(Attributes.CURRENT_JSP);
+        HttpServletRequest httpRequest = (HttpServletRequest) req;
+        HttpSession session = httpRequest.getSession();
+
         session.setAttribute(Attributes.LANG, lang);
 
         return new CommandResult(req.getHeader("referer"), true);

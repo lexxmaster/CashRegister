@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class ReportDAO extends AbstractDAO<Long, Report>{
-    public static final String SELECT_ALL_REPORTS = "SELECT report.check_amount, report.sum, report.user_id, report.checkout_id FROM z_reports AS report;";
+    public static final String SELECT_ALL_REPORTS = "SELECT report.check_amount, report.check_sum, report.user_id, report.checkout_id FROM z_reports AS report;";
     public static final String CREATE_REPORT = "INSERT INTO z_reports (check_amount, check_sum, user_id, checkout_id) VALUES (?,?,?,?);";
-    public static final String SELECT_REPORT_BY_CHECKOUT = "SELECT report.check_amount, report.sum, report.user_id, report.checkout_id FROM z_reports AS report WHERE report.checkout_id = ?;";
-    public static final String SELECT_REPORT_BY_ID = "SELECT report.check_amount, report.sum, report.user_id, report.checkout_id FROM z_reports AS report WHERE report.id = ?;";
+    public static final String SELECT_REPORT_BY_CHECKOUT = "SELECT report.check_amount, report.check_sum, report.user_id, report.checkout_id FROM z_reports AS report WHERE report.checkout_id = ?;";
+    public static final String SELECT_REPORT_BY_ID = "SELECT report.check_amount, report.check_sum, report.user_id, report.checkout_id FROM z_reports AS report WHERE report.id = ?;";
 
     @Override
     public List<Report> findAll() {

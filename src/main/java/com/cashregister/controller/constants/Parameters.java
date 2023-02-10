@@ -15,5 +15,5 @@ public class Parameters {
     public static final String GOODS_PRICE = "goods_price";
     public static final String GOODS_SET_AMOUNT = "goods_set_amount";
     public static final String PAGE = "page";
-
+    public static final String REPORT_ID = "report_id";
 }

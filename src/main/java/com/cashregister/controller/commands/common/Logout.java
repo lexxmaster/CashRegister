@@ -23,7 +23,6 @@ public class Logout implements ICommand {
         session.removeAttribute(Attributes.ROLE);
         session.removeAttribute(Attributes.WAREHOUSE);
         session.removeAttribute(Attributes.CHECKOUT_SHIFT);
-        session.removeAttribute(Attributes.CURRENT_JSP);
 
         recordCurrentPage(req, Paths.LOGIN);
 

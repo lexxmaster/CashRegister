@@ -30,6 +30,12 @@
                         <input class="button" type="submit" value=<fmt:message key="cashier_actions.x_report"/>>
                     </form>
                 </th>
+                <th>
+                    <form method="get" action="controller">
+                        <input type="hidden" name="action" value="z_report_create">
+                        <input class="button" type="submit" value=<fmt:message key="cashier_actions.z_report"/>>
+                    </form>
+                </th>
             </c:if>
 
             <th>
