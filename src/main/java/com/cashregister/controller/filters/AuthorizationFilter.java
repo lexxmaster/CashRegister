@@ -64,11 +64,4 @@ public class AuthorizationFilter implements Filter {
             request.getRequestDispatcher(Paths.LOGIN).forward(request, response);
         }
     }
-
-    private User validateUserData(String login, String password){
-        UserDAO dao = new UserDAO();
-
-        User user = dao.findByLogin(login).orElseThrow();
-        return user;
-    }
 }

@@ -6,6 +6,7 @@ public class Parameters {
     public static final String LANG = "lang";
     public static final String ACTION = "action";
     public static final String ORDER_ID = "order_id";
+    public static final String USER_ID = "user_id";
     public static final String ROLE = "role";
     public static final String SEARCH_GOODS = "search_goods";
     public static final String GOODS_ID = "goods_id";

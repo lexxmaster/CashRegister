@@ -7,6 +7,7 @@ public class Paths {
     public static final String GOODS_LIST = "/jsp/goods_list.jsp";
     public static final String ORDER_LIST = "/jsp/orders_list.jsp";
     public static final String USER_LIST = "/jsp/users_list.jsp";
+    public static final String USER = "/jsp/user.jsp";
     public static final String ORDER = "/jsp/order.jsp";
 
     public static final String ERROR_404 = "/jsp/error_404.jsp";

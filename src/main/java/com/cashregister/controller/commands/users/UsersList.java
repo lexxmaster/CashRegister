@@ -22,8 +22,8 @@ import static java.util.Objects.nonNull;
 public class UsersList implements ICommand {
     @Override
     public CommandResult execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int page = RECORDS_PER_PAGE;
-        int recordsPerPage = 1;
+        int page = 1;
+        int recordsPerPage = RECORDS_PER_PAGE;
         if (nonNull(req.getParameter(Parameters.PAGE))) {
             page = Integer.parseInt(req.getParameter(Parameters.PAGE));
         }

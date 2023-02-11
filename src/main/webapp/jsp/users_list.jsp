@@ -12,32 +12,10 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
-<div>
-    <div class="w3-container">
-        <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black"><fmt:message key="goods.new_goods"/></button>
-
-        <div id="id01" class="w3-modal">
-            <div class="w3-modal-content">
-                <div class="w3-container">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                    <p>Some text. Some text. Some text.</p>
-                    <form method="post" action="controller">
-                        <input type="hidden" name="action" value="user_create">
-                        <label for="goods_name"><fmt:message key="goods.creation.name"/></label>
-                        <input type="text" required id="goods_name" name="goods_name"><br>
-                        <label for="goods_scancode"><fmt:message key="goods.creation.scancode"/></label>
-                        <input type="text" required id="goods_scancode" name="goods_scancode"><br>
-                        <label for="goods_weight"><fmt:message key="goods.creation.weight"/></label>
-                        <input type="checkbox" required id="goods_weight" name="goods_weight"><br>
-                        <label for="goods_price"><fmt:message key="goods.creation.price"/></label>
-                        <input type="number" required id="goods_price" name="goods_price" step="0.01" min="0" max="100000">
-                        <input class="button" type="submit" value=<fmt:message key="goods.creation.submit"/>>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<form method="get" action="controller">
+    <input type="hidden" name="action" value="user_create">
+    <input class="button" type="submit" value=<fmt:message key="user.create"/>>
+</form><br>
 <table>
     <tr>
         <th><fmt:message key="users.table.login"/></th>
@@ -48,6 +26,11 @@
         <tr>
             <td>${user.login}</td>
             <td>${user.role}</td>
+            <td><form method="get" action="controller">
+                <input type="hidden" name="action" value="user_open">
+                <input type="hidden"  name="user_id" value="${user.id}"><br><br>
+                <input class="button" type="submit" value=<fmt:message key="users.table.open"/>>
+            </form></td>
 
      <%--       <td>${goods.amount}</td> --%>
 

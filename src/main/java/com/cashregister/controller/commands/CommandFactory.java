@@ -13,7 +13,8 @@ import com.cashregister.controller.commands.report.XReportView;
 import com.cashregister.controller.commands.report.ZReportCreate;
 import com.cashregister.controller.commands.report.ZReportView;
 import com.cashregister.controller.commands.users.UserCreate;
-import com.cashregister.controller.commands.users.UserUpdate;
+import com.cashregister.controller.commands.users.UserOpen;
+import com.cashregister.controller.commands.users.UserSave;
 import com.cashregister.controller.commands.users.UsersList;
 import com.cashregister.controller.constants.Actions;
 
@@ -82,11 +83,14 @@ public class CommandFactory {
             case Actions.USER_LIST:
                 command = new UsersList();
                 break;
+            case Actions.USER_OPEN:
+                command = new UserOpen();
+                break;
             case Actions.USER_CREATE:
                 command = new UserCreate();
                 break;
-            case Actions.USER_UPDATE:
-                command = new UserUpdate();
+            case Actions.USER_SAVE:
+                command = new UserSave();
                 break;
             default:
                 command = new EmptyAction();

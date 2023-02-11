@@ -10,13 +10,6 @@
     <table>
         <tr>
             <th>
-                <form method="get" action="controller">
-                    <input type="hidden" name="action" value="goods_list">
-                    <input type="hidden" name="page" value="1">
-                    <input class="button" type="submit" value="Goods">
-                </form>
-            </th>
-            <th>
                 <form method="post" action="controller">
                     <input type="hidden" name="action" value="lang">
                     <input type="hidden" name="lang" value="en">
