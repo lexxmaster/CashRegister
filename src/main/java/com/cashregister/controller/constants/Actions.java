@@ -16,6 +16,8 @@ public class Actions {
     public static final String ORDER_GOODS_DELETE = "order_goods_delete";
     public static final String GOODS_LIST = "goods_list";
     public static final String GOODS_CREATE = "goods_create";
+    public static final String GOODS_UPDATE_AMOUNT = "goods_change_amount";
+    public static final String GOODS_UPDATE_PRICE = "goods_change_price";
     public static final String USER_LIST = "user_list";
     public static final String USER_OPEN = "user_open";
     public static final String USER_CREATE = "user_create";

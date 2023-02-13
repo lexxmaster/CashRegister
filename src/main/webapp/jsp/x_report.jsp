@@ -26,7 +26,7 @@
 <div>
     <form method="get" action="controller">
         <input type="hidden" name="action" value="order_list">
-        <input class="button" type="submit" value=<fmt:message key="login.enter"/>>
+        <input class="button" type="submit" value=<fmt:message key="common.close"/>>
     </form>
 </div>
 </body>

@@ -52,13 +52,15 @@
         <c:forEach var="entity" items="${order.goodsList}">
             <tr>
                 <td>${entity.getKey().name}</td>
-                <td><form method="post" action="controller">
-                    <input type="hidden" name="action" value="order_goods_amount">
-                    <input type="hidden"  name="order_id" value="${order.id}">
-                    <input type="hidden"  name="goods_id" value="${entity.getKey().id}">
-                    <input type="number" name="goods_set_amount" value="${entity.getValue().amount}" step="0.001" min="0" max="100000">
-                    <input class="button" type="submit" value=<fmt:message key="common.apply"/>>
-                </form>
+                <td>
+                    <form method="post" action="controller">
+                        <input type="hidden" name="action" value="order_goods_amount">
+                        <input type="hidden"  name="order_id" value="${order.id}">
+                        <input type="hidden"  name="goods_id" value="${entity.getKey().id}">
+                        <input type="number" name="goods_set_amount" value="${entity.getValue().amount}" step="0.001" min="0" max="100000">
+                        <input class="button" type="submit" value=<fmt:message key="common.apply"/>>
+                    </form>
+                </td>
 
                 <td>${entity.getValue().price}</td>
                 <td>${entity.getValue().total}</td>

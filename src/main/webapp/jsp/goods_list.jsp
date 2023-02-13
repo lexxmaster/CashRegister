@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="ctg"  uri="customtags"%>
 
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="language"/>
@@ -40,20 +41,34 @@
 </div>
 <table>
     <tr>
-        <th><fmt:message key="goods.table.name"/></th>
-        <th><fmt:message key="goods.table.scancode"/></th>
-        <th><fmt:message key="goods.table.weight"/></th>
-        <th><fmt:message key="goods.table.price"/></th>
-        <th><fmt:message key="goods.table.amount"/></th>
+        <th style="width:45%"><fmt:message key="goods.table.name"/></th>
+        <th style="width:15%"><fmt:message key="goods.table.scancode"/></th>
+        <th style="width:10%"><fmt:message key="goods.table.weight"/></th>
+        <th style="width:15%"><fmt:message key="goods.table.price"/></th>
+        <th style="width:15%"><fmt:message key="goods.table.amount"/></th>
     </tr>
     <tbody>
-    <c:forEach var="goods" items="${goodslist}">
+    <c:forEach var="entity" items="${goodslist}">
         <tr>
-            <td>${goods.name}</td>
-            <td>${goods.scancode}</td>
-            <td>${goods.weight}</td>
-            <td>${goods.price}</td>
-     <%--       <td>${goods.amount}</td> --%>
+            <td>${entity.getKey().name}</td>
+            <td>${entity.getKey().scancode}</td>
+            <td><ctg:boolean_format check="${entity.getKey().weight}"/></td>
+            <td>
+                <form method="post" action="controller">
+                    <input type="hidden" name="action" value="goods_change_price">
+                    <input type="hidden"  name="goods_id" value="${entity.getKey().id}">
+                    <input type="number" name="goods_price" value="${entity.getKey().price}" step="0.01" min="0" max="100000">
+                    <input class="button" type="submit" value=<fmt:message key="common.apply"/>>
+                </form>
+            </td>
+            <td>
+                <form method="post" action="controller">
+                    <input type="hidden" name="action" value="goods_change_amount">
+                    <input type="hidden"  name="goods_id" value="${entity.getKey().id}">
+                    <input type="number" name="goods_amount" value="${entity.getValue().doubleValue()}" step="0.001" min="0" max="100000">
+                    <input class="button" type="submit" value=<fmt:message key="common.apply"/>>
+                </form>
+            </td>
 
         </tr>
     </c:forEach>

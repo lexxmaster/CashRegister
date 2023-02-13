@@ -5,6 +5,8 @@ import com.cashregister.controller.commands.checkoutshift.CheckoutCreate;
 import com.cashregister.controller.commands.common.*;
 import com.cashregister.controller.commands.goods.GoodsCreate;
 import com.cashregister.controller.commands.goods.GoodsList;
+import com.cashregister.controller.commands.goods.GoodsUpdateAmount;
+import com.cashregister.controller.commands.goods.GoodsUpdatePrice;
 import com.cashregister.controller.commands.orders.*;
 import com.cashregister.controller.commands.orders.goods.OrderGoodsAdd;
 import com.cashregister.controller.commands.orders.goods.OrderGoodsAmount;
@@ -70,6 +72,12 @@ public class CommandFactory {
                 break;
             case Actions.GOODS_CREATE:
                 command = new GoodsCreate();
+                break;
+            case Actions.GOODS_UPDATE_AMOUNT:
+                command = new GoodsUpdateAmount();
+                break;
+            case Actions.GOODS_UPDATE_PRICE:
+                command = new GoodsUpdatePrice();
                 break;
             case Actions.X_REPORT:
                 command = new XReportView();
