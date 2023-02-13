@@ -2,15 +2,12 @@ package com.cashregister.controller.commands.goods;
 
 import com.cashregister.controller.commands.CommandResult;
 import com.cashregister.controller.commands.ICommand;
-import com.cashregister.controller.constants.Attributes;
 import com.cashregister.controller.constants.Parameters;
 import com.cashregister.model.dao.GoodsDAO;
 import com.cashregister.model.entity.Goods;
-import com.cashregister.model.entity.Warehouse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 

@@ -11,6 +11,7 @@ import com.cashregister.model.dao.OrderDAO;
 import com.cashregister.model.entity.Goods;
 import com.cashregister.model.entity.GoodsAmount;
 import com.cashregister.model.entity.Order;
+import com.cashregister.model.entity.Warehouse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,6 +27,7 @@ public class OrderGoodsDelete implements ICommand {
     public CommandResult execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         long goods_id = Long.parseLong(req.getParameter(Parameters.GOODS_ID));
+        Warehouse warehouse = (Warehouse) session.getAttribute(Attributes.WAREHOUSE);
 
         Order order = (Order) session.getAttribute(Attributes.ORDER);
         Map<Goods, GoodsAmount> goodsList =  order.getGoodsList();
@@ -37,9 +39,11 @@ public class OrderGoodsDelete implements ICommand {
 
         }
         if (nonNull(goods) && goodsList.containsKey(goods)) {
-            //goodsList.remove(goods);
             OrderDAO orderDAO = new OrderDAO();
+            double amount = order.getGoodsList().get(goods).getAmount();
+            double availableAmount = goodsDAO.getAvailableAmount(warehouse.getId(), goods_id);
             orderDAO.deleteOrderGoods(order, goods);
+            goodsDAO.setAvailableAmount(warehouse.getId(), goods_id, availableAmount + amount);
         }
         String path = Paths.CONTROLLER + Actions.ORDER_OPEN + "&" + Parameters.ORDER_ID + "=" + order.getId();
         return new CommandResult(path, true);

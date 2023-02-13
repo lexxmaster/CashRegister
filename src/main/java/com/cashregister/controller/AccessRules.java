@@ -16,6 +16,7 @@ public class AccessRules {
         List<String> commandsCashier = new ArrayList<>();
         List<String> commandsSeniorCashier = new ArrayList<>();
         List<String> commandsCommodity = new ArrayList<>();
+        List<String> commandsAdmin = new ArrayList<>();
 
         commandsCashier.add(Actions.HOME);
         commandsCashier.add(Actions.CHECKOUT_CREATE);
@@ -32,6 +33,7 @@ public class AccessRules {
         availableCommands.put(Role.CASHIER, commandsCashier);
         availableCommands.put(Role.SENIOR_CASHIER, commandsSeniorCashier);
         availableCommands.put(Role.COMMODITY_EXPERT, commandsCommodity);
+        availableCommands.put(Role.ADMIN, commandsAdmin);
     }
 
     public static boolean checkAccess(Role role, String command){

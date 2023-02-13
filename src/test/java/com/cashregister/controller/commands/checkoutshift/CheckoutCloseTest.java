@@ -27,7 +27,7 @@ import java.util.Optional;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-public class CheckoutTest {
+public class CheckoutCloseTest {
     HttpServletResponse response;
     HttpServletRequest request;
     HttpSession session;

@@ -19,7 +19,6 @@ public class Order extends Entity{
         this.warehouse = warehouse;
         this.closed = false;
         this.date = timestamp;
-        //this.date = new Timestamp(System.currentTimeMillis());
         this.total = 0;
         this.goodsList = new HashMap<>();
     }
@@ -75,13 +74,35 @@ public class Order extends Entity{
         total = goodsList.values().stream().mapToDouble(item -> item.getTotal()).sum();
     }
 
-    public boolean addGoods(Goods goods, double amount){
+    public double calcRemnant(Goods goods, double amount, double availableAmount){
         if (goodsList.containsKey(goods)) {
             GoodsAmount goodsAmount = goodsList.get(goods);
+            availableAmount += goodsAmount.getAmount();
             if (goods.isWeight() && amount > 0) {
-                goodsAmount.setAmount(goodsAmount.getAmount() + amount);
+                amount = Math.min(goodsAmount.getAmount() + amount, availableAmount);
             } else {
-                goodsAmount.setAmount(goodsAmount.getAmount() + 1);
+                amount = Math.min(goodsAmount.getAmount() + 1, availableAmount);
+            }
+            availableAmount -= amount;
+            return availableAmount;
+        } else {
+            if (!goods.isWeight() && availableAmount >= 1.0) {
+                availableAmount -= 1.0;
+            }
+
+            return availableAmount;
+        }
+    }
+    public boolean addGoods(Goods goods, double amount, double availableAmount){
+        if (goodsList.containsKey(goods)) {
+            GoodsAmount goodsAmount = goodsList.get(goods);
+            availableAmount += goodsAmount.getAmount();
+            if (goods.isWeight() && amount > 0) {
+                amount = Math.min(goodsAmount.getAmount() + amount, availableAmount);
+                goodsAmount.setAmount(amount);
+            } else {
+                amount = Math.min(goodsAmount.getAmount() + 1, availableAmount);
+                goodsAmount.setAmount(amount);
             }
             return false;
         } else {
@@ -89,7 +110,7 @@ public class Order extends Entity{
             goodsAmount.setPrice(goods.getPrice());
             if (goods.isWeight()) {
 
-            } else {
+            } else if (availableAmount >= 1.0) {
                 goodsAmount.setAmount(1.0);
             }
             goodsList.put(goods, goodsAmount);

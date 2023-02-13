@@ -10,6 +10,7 @@ import com.cashregister.model.dao.GoodsDAO;
 import com.cashregister.model.dao.OrderDAO;
 import com.cashregister.model.entity.Goods;
 import com.cashregister.model.entity.Order;
+import com.cashregister.model.entity.Warehouse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -27,6 +28,7 @@ public class OrderGoodsAdd implements ICommand {
 
         HttpSession session = req.getSession();
         Order order = (Order) session.getAttribute(Attributes.ORDER);
+        Warehouse warehouse = (Warehouse) session.getAttribute(Attributes.WAREHOUSE);
 
         String path = Paths.CONTROLLER + Actions.ORDER_OPEN + "&" + Parameters.ORDER_ID + "=" + order.getId();
 
@@ -40,13 +42,16 @@ public class OrderGoodsAdd implements ICommand {
             }
 
             if (nonNull(goods)) {
-                boolean newRow = order.addGoods(goods, amount);
+                double availableAmount = goodsDAO.getAvailableAmount(warehouse.getId(), goods.getId());
+                double remnant = order.calcRemnant(goods, amount, availableAmount);
+                boolean newRow = order.addGoods(goods, amount, availableAmount);
                 OrderDAO orderDAO = new OrderDAO();
                 if (newRow) {
                     orderDAO.createOrderGoods(order, goods);
                 } else {
                     orderDAO.updateOrderGoods(order, goods);
                 }
+                goodsDAO.setAvailableAmount(warehouse.getId(), goods.getId(), remnant);
             }
         }
 

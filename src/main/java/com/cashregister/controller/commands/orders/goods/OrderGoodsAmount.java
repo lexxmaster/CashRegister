@@ -11,6 +11,7 @@ import com.cashregister.model.dao.OrderDAO;
 import com.cashregister.model.entity.Goods;
 import com.cashregister.model.entity.GoodsAmount;
 import com.cashregister.model.entity.Order;
+import com.cashregister.model.entity.Warehouse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,6 +26,7 @@ public class OrderGoodsAmount implements ICommand {
         HttpSession session = req.getSession();
         long goods_id = Long.parseLong(req.getParameter(Parameters.GOODS_ID));
         double amount = Double.parseDouble(req.getParameter(Parameters.GOODS_SET_AMOUNT));
+        Warehouse warehouse = (Warehouse) session.getAttribute(Attributes.WAREHOUSE);
 
         Order order = (Order) session.getAttribute(Attributes.ORDER);
         Map<Goods, GoodsAmount> goodsList =  order.getGoodsList();
@@ -33,10 +35,16 @@ public class OrderGoodsAmount implements ICommand {
         Goods goods = goodsDAO.findById(goods_id).orElse(null);
 
         GoodsAmount goodsAmount = goodsList.get(goods);
+        double availableAmount = goodsDAO.getAvailableAmount(warehouse.getId(), goods_id);
+        double oldAmount = goodsAmount.getAmount();
+
+        amount = Math.min(amount, availableAmount + oldAmount);
+        availableAmount += goodsAmount.getAmount() - amount;
         goodsAmount.setAmount(amount);
 
         OrderDAO orderDAO = new OrderDAO();
         orderDAO.updateOrderGoods(order, goods);
+        goodsDAO.setAvailableAmount(warehouse.getId(), goods_id, availableAmount);
 
         String path = Paths.CONTROLLER + Actions.ORDER_OPEN + "&" + Parameters.ORDER_ID + "=" + order.getId();
         return new CommandResult(path, true);

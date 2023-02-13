@@ -15,8 +15,10 @@
 <body>
     <form method="post" action="controller">
         <input type="hidden" name="action" value="login">
-        <input type="text" required placeholder="login" name="login"><br>
-        <input type="password" required placeholder="password" name="password"><br><br>
+        <label for="login"><fmt:message key="common.login"/></label>
+        <input type="text" required id="login" placeholder="login" name="login"><br>
+        <label for="password"><fmt:message key="common.password"/></label>
+        <input type="password" id="password" required placeholder="password" name="password"><br><br>
         <input class="button" type="submit" value=<fmt:message key="login.enter"/>>
     </form>
 </body>
