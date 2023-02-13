@@ -28,6 +28,7 @@ public class Order extends Entity{
         this.checkoutShift = checkoutShift;
         this.date = Timestamp.valueOf(LocalDateTime.now());
         this.closed = false;
+        this.goodsList = new HashMap<>();
     }
 
     public Timestamp getDate() {

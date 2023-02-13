@@ -36,6 +36,8 @@ public class CheckoutCloseTest {
     CheckoutShiftDAO checkoutShiftDAO;
     UserDAO userDAO;
     CommandResult result;
+    Warehouse warehouse;
+    CheckoutShift checkoutShift;
 
     @BeforeEach
     public void setUp(){
@@ -45,18 +47,19 @@ public class CheckoutCloseTest {
         userDAO = mock(UserDAO.class);
         checkoutShiftDAO = mock(CheckoutShiftDAO.class);
 
-        checkoutCreate = new CheckoutCreate();
+        warehouse = new Warehouse(1, "main");
+        checkoutShift = new CheckoutShift(warehouse);
         checkoutClose = new CheckoutClose();
     }
 
     @Test
     public void execute() throws ServletException, IOException {
         when(request.getSession()).thenReturn(session);
-        when(session.getAttribute(Attributes.CHECKOUT_SHIFT)).thenReturn(null);
-        when(session.getAttribute(Attributes.WAREHOUSE)).thenReturn(new Warehouse(1, "main"));
-        when(session.getAttribute(Attributes.LOGIN)).thenReturn("cashier");
+        when(session.getAttribute(Attributes.CHECKOUT_SHIFT)).thenReturn(checkoutShift);
+        when(session.getAttribute(Attributes.WAREHOUSE)).thenReturn(warehouse);
+        when(session.getAttribute(Attributes.LOGIN)).thenReturn("test");
 
-        when(userDAO.findByLogin(any(String.class))).thenReturn(Optional.of(new User(1, "admin", "")));
+        when(userDAO.findByLogin(any(String.class))).thenReturn(Optional.of(new User(1, "test", "")));
         when(checkoutShiftDAO.create(any(CheckoutShift.class))).thenReturn(true);
 
         try (MockedConstruction<UserDAO> mockedUserDAO = mockConstructionWithAnswer(UserDAO.class, new Answer() {
@@ -72,7 +75,7 @@ public class CheckoutCloseTest {
                  }
              });){
 
-            result = checkoutCreate.execute(request, response);
+            result = checkoutClose.execute(request, response);
         }
 
         Assertions.assertEquals(result.getPath(), Paths.CONTROLLER + Actions.ORDER_LIST);
