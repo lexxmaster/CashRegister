@@ -11,6 +11,7 @@ public class CheckoutShift extends Entity{
 
     public CheckoutShift(Timestamp date) {
         this.date = date;
+        Integer i;
         closed = false;
     }
 

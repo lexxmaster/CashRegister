@@ -29,7 +29,7 @@
             <div class="w3-modal-content">
                 <div class="w3-container">
                     <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                    <p>Some text. Some text. Some text.</p>
+                    <p><fmt:message key="order.add_goods.header"/></p>
                     <form method="post" action="controller">
                         <input type="hidden" name="action" value="order_goods_add">
                         <input type="text" required name="search_goods"><br><br>
@@ -75,6 +75,6 @@
         </tbody>
     </table>
 </div>
-
+<%@ include file="errors.jsp" %>
 </body>
 </html>

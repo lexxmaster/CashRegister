@@ -39,13 +39,14 @@
     </tbody>
 </table>
 
-<c:if test="${currentPage != 1}">
-    <td><a href="controller?action=user_list&page=${currentPage - 1}"><fmt:message key="table.previous"/></a></td>
-</c:if>
+
 
 
 <table border="1" cellpadding="5" cellspacing="5">
     <tr>
+        <c:if test="${currentPage != 1}">
+            <td><a href="controller?action=user_list&page=${currentPage - 1}"><fmt:message key="table.previous"/></a></td>
+        </c:if>
         <c:forEach begin="1" end="${noOfPages}" var="i">
             <c:choose>
                 <c:when test="${currentPage eq i}">
@@ -56,11 +57,12 @@
                 </c:otherwise>
             </c:choose>
         </c:forEach>
+        <c:if test="${currentPage lt noOfPages}">
+            <td><a href="controller?action=user_list&page=${currentPage + 1}"><fmt:message key="table.next"/></a></td>
+        </c:if>
     </tr>
 </table>
 
-<c:if test="${currentPage lt noOfPages}">
-    <td><a href="controller?action=user_list&page=${currentPage + 1}"><fmt:message key="table.next"/></a></td>
-</c:if>
+
 </body>
 </html>

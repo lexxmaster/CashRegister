@@ -16,9 +16,12 @@
     <form method="post" action="controller">
         <input type="hidden" name="action" value="user_save">
         <input type="hidden" name="id" value="${user.id}">
-        <input type="text" required placeholder="login" name="login" value="${user.login}"><br>
-        <input type="password" required placeholder="password" name="password" value="${user.passwd}"><br>
-        <select name="role">
+        <label for="login"><fmt:message key="user.login"/></label><br>
+        <input type="text" required placeholder="login" id="login" name="login" value="${user.login}"><br>
+        <label for="password"><fmt:message key="user.password"/></label><br>
+        <input type="password" required placeholder="password" id="password" name="password" value="${user.passwd}"><br>
+        <label for="role"><fmt:message key="user.role"/></label><br>
+        <select id="role" name="role">
             <option <c:if test="${user.role == 1}">selected</c:if> value="1"><fmt:message key="role.cashier"/></option>
             <option <c:if test="${user.role == 2}">selected</c:if> value="2"><fmt:message key="role.senior_cashier"/></option>
             <option <c:if test="${user.role == 3}">selected</c:if> value="3"><fmt:message key="role.commodity_expert"/></option>
@@ -26,5 +29,6 @@
         </select><br><br>
         <input class="button" type="submit" value=<fmt:message key="user.save"/>>
     </form>
+<%@ include file="errors.jsp" %>
 </body>
 </html>

@@ -112,7 +112,7 @@ public class GoodsDAO extends AbstractDAO<Long, Goods> {
     public int getRecordsCount() {
         Connection con = DBManager.getInstance().getConnection();
         Statement stmt = null;
-        int count = 0;
+        int count = 1;
         try {
             stmt = con.createStatement();
             ResultSet resultSet = stmt.executeQuery(GET_RECORDS_COUNT);

@@ -20,12 +20,6 @@
             <c:if test="${not empty checkout_shift}">
                 <th>
                     <form method="get" action="controller">
-                        <input type="hidden" name="action" value="checkout_close">
-                        <input class="button" type="submit" value=<fmt:message key="cashier_actions.checkout_close"/>>
-                    </form>
-                </th>
-                <th>
-                    <form method="get" action="controller">
                         <input type="hidden" name="action" value="x_report_view">
                         <input class="button" type="submit" value=<fmt:message key="cashier_actions.x_report"/>>
                     </form>

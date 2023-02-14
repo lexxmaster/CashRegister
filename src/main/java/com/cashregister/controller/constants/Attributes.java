@@ -16,4 +16,6 @@ public class Attributes {
     public static final String GOODS_LIST = "goodslist";
     public static final String USER_LIST = "userlist";
     public static final String REPORT = "report";
+    public static final String ERR_LOGIN = "err_login";
+    public static final String ERR_PASS = "err_pass";
 }
