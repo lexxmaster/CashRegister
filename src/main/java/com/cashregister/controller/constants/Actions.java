@@ -4,6 +4,8 @@ public class Actions {
     public static final String LOGIN = "login";
     public static final String LOGOUT = "logout";
     public static final String CHANGE_LANGUAGE = "lang";
+    public static final String CHECKOUT_LIST = "checkout_list";
+    public static final String CHECKOUT_OPEN = "checkout_open";
     public static final String CHECKOUT_CREATE = "checkout_create";
     public static final String CHECKOUT_CLOSE = "checkout_close";
     public static final String ORDER_LIST = "order_list";

@@ -43,7 +43,7 @@ public class Home implements ICommand {
                 break;
             }
             case SENIOR_CASHIER -> {
-                result.setPath(Paths.CONTROLLER + Actions.ORDER_LIST);
+                result.setPath(Paths.CONTROLLER + Actions.CHECKOUT_LIST);
                 break;
             }
             case COMMODITY_EXPERT -> {

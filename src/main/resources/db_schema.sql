@@ -137,6 +137,10 @@ VALUES (4, 'admin');
 INSERT INTO users (login, passwd, roles_id)
 VALUES ('cashier', '1', 1);
 INSERT INTO users (login, passwd, roles_id)
+VALUES ('boss', '2', 2);
+INSERT INTO users (login, passwd, roles_id)
+VALUES ('warehouse', '2', 3);
+INSERT INTO users (login, passwd, roles_id)
 VALUES ('admin', 'admin', 4);
 
 INSERT INTO warehouses (id, warehouses_name)

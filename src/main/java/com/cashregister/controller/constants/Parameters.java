@@ -5,6 +5,7 @@ public class Parameters {
     public static final String PASS = "password";
     public static final String LANG = "lang";
     public static final String ACTION = "action";
+    public static final String CHECKOUT_ID = "checkout_id";
     public static final String ORDER_ID = "order_id";
     public static final String USER_ID = "user_id";
     public static final String ROLE = "role";

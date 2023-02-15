@@ -19,4 +19,9 @@ public abstract class AbstractDAO<K, T extends Entity> {
     public abstract boolean update(T entity);
 
     public abstract boolean delete(T entity);
+
+    public int getNumOfPages(int recordsPerPage) {
+        int recordsCount = this.getRecordsCount();
+        return (int) Math.ceil(recordsCount * 1.0/ recordsPerPage);
+    }
 }
