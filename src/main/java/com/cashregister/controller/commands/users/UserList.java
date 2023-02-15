@@ -5,9 +5,7 @@ import com.cashregister.controller.commands.ICommand;
 import com.cashregister.controller.constants.Attributes;
 import com.cashregister.controller.constants.Parameters;
 import com.cashregister.controller.constants.Paths;
-import com.cashregister.model.dao.GoodsDAO;
 import com.cashregister.model.dao.UserDAO;
-import com.cashregister.model.entity.Goods;
 import com.cashregister.model.entity.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,7 +17,7 @@ import java.util.List;
 import static com.cashregister.controller.constants.Common.RECORDS_PER_PAGE;
 import static java.util.Objects.nonNull;
 
-public class UsersList implements ICommand {
+public class UserList implements ICommand {
     @Override
     public CommandResult execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int page = 1;

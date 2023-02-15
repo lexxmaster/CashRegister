@@ -49,6 +49,7 @@
                         <input class="button" type="submit" value=<fmt:message key="orders.table.edit"/>>
                     </form>
                 </td>
+                <c:if test="${role eq Role.SENIOR_CASHIER}">
                 <td>
                     <form method="get" action="controller">
                         <input type="hidden" name="action" value="order_delete">
@@ -56,6 +57,7 @@
                         <input class="button" type="submit" value=<fmt:message key="orders.table.delete"/>>
                     </form>
                 </td>
+                </c:if>
             </tr>
 
         </c:forEach>

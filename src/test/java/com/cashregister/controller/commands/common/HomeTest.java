@@ -79,7 +79,17 @@ public class HomeTest {
 
         Assertions.assertEquals(result.getPath(), Paths.CONTROLLER + Actions.ORDER_LIST);
 
+        when(session.getAttribute(Attributes.ROLE)).thenReturn(Role.SENIOR_CASHIER);
+        result = command.execute(request, response);
+        Assertions.assertEquals(result.getPath(), Paths.CONTROLLER + Actions.CHECKOUT_LIST);
 
+        when(session.getAttribute(Attributes.ROLE)).thenReturn(Role.ADMIN);
+        result = command.execute(request, response);
+        Assertions.assertEquals(result.getPath(), Paths.CONTROLLER + Actions.USER_LIST);
+
+        when(session.getAttribute(Attributes.ROLE)).thenReturn(Role.COMMODITY_EXPERT);
+        result = command.execute(request, response);
+        Assertions.assertEquals(result.getPath(), Paths.CONTROLLER + Actions.GOODS_LIST);
     }
 
     @AfterEach

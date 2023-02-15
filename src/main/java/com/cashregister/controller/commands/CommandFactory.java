@@ -19,7 +19,7 @@ import com.cashregister.controller.commands.report.ZReportView;
 import com.cashregister.controller.commands.users.UserCreate;
 import com.cashregister.controller.commands.users.UserOpen;
 import com.cashregister.controller.commands.users.UserSave;
-import com.cashregister.controller.commands.users.UsersList;
+import com.cashregister.controller.commands.users.UserList;
 import com.cashregister.controller.constants.Actions;
 
 public class CommandFactory {
@@ -52,7 +52,7 @@ public class CommandFactory {
                 command = new CheckoutClose();
                 break;
             case Actions.ORDER_LIST:
-                command = new OrdersList();
+                command = new OrderList();
                 break;
             case Actions.ORDER_OPEN:
                 command = new OrderOpen();
@@ -97,7 +97,7 @@ public class CommandFactory {
                 command = new ZReportView();
                 break;
             case Actions.USER_LIST:
-                command = new UsersList();
+                command = new UserList();
                 break;
             case Actions.USER_OPEN:
                 command = new UserOpen();

@@ -52,7 +52,6 @@ public class CheckoutCreateTest {
     @Test
     public void execute() throws ServletException, IOException {
         when(request.getSession()).thenReturn(session);
-        when(session.getAttribute(Attributes.CHECKOUT_SHIFT)).thenReturn(null);
         when(session.getAttribute(Attributes.WAREHOUSE)).thenReturn(new Warehouse(1, "main"));
         when(session.getAttribute(Attributes.LOGIN)).thenReturn("cashier");
 

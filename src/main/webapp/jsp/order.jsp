@@ -64,12 +64,14 @@
 
                 <td>${entity.getValue().price}</td>
                 <td>${entity.getValue().total}</td>
+                <c:if test="${role eq Role.SENIOR_CASHIER}">
                 <td><form method="post" action="controller">
                     <input type="hidden" name="action" value="order_goods_delete">
                     <input type="hidden"  name="order_id" value="${order.id}"><br><br>
                     <input type="hidden"  name="goods_id" value="${entity.getKey().id}"><br><br>
                     <input class="button" type="submit" value=<fmt:message key="order.table.delete"/>>
                 </form></td>
+                </c:if>
             </tr>
         </c:forEach>
         </tbody>
