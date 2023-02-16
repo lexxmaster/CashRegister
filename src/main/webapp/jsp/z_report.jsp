@@ -8,6 +8,7 @@
 <html>
 <head>
     <title>X-Report</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/w3.css" />
 </head>
 <body>
 <%@ include file="header.jsp" %>

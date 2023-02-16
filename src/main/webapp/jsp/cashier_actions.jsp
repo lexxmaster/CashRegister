@@ -5,7 +5,9 @@
 
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="language"/>
-
+<head>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/w3.css" />
+</head>
 <header>
     <table>
         <tr>

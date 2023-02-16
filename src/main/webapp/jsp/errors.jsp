@@ -4,7 +4,7 @@
 
 <html>
 <head>
-
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/w3.css" />
 </head>
 <body>
 <c:if test="${err_login}">

@@ -10,6 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/w3.css" />
 </head>
 <body>
 <%@ include file="header.jsp" %>

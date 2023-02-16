@@ -13,7 +13,8 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/w3.css" />
 
     <style>
-        body {width: 500px;
+        body {width: 1000px;
+            height: 500px;
             display: flex;
             justify-content: center;}
     </style>

@@ -6,35 +6,35 @@
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="language"/>
 
+<head>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/w3.css" />
+</head>
 <header>
-    <table>
-        <tr>
-            <th>
-                <form method="post" action="controller">
-                    <input type="hidden" name="action" value="lang">
-                    <input type="hidden" name="lang" value="en">
-                    <input type="image" src="img/en.webp" alt="English" />
-                </form>
-            </th>
-            <th>
-                <form method="post" action="controller">
-                    <input type="hidden" name="action" value="lang">
-                    <input type="hidden" name="lang" value="uk">
-                    <input type="image" src="img/uk.webp" alt="Ukraine" />
-                </form>
-            </th>
-            <th>
-                <form method="post" action="controller">
-                    <input type="hidden" name="action" value="logout">
-                    <input class="button" type="submit" value=<fmt:message key="login.logout"/>>
-                </form>
-            </th>
+    <div>
+        <table>
+            <tr>
+                <th>
+                    <form method="post" action="controller">
+                        <input type="hidden" name="action" value="lang">
+                        <input type="hidden" name="lang" value="en">
+                        <input type="image" src="img/en.webp" alt="English" />
+                    </form>
+                </th>
+                <th>
+                    <form method="post" action="controller">
+                        <input type="hidden" name="action" value="lang">
+                        <input type="hidden" name="lang" value="uk">
+                        <input type="image" src="img/uk.webp" alt="Ukraine" />
+                    </form>
+                </th>
+                <th>
+                    <form method="post" action="controller">
+                        <input type="hidden" name="action" value="logout">
+                        <input class="button" type="submit" value=<fmt:message key="login.logout"/>>
+                    </form>
+                </th>
 
-        </tr>
-    </table>
-
-
-
+            </tr>
+        </table>
     </div>
-
 </header>
