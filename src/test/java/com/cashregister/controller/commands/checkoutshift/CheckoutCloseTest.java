@@ -78,7 +78,7 @@ public class CheckoutCloseTest {
             result = checkoutClose.execute(request, response);
         }
 
-        Assertions.assertEquals(result.getPath(), Paths.CONTROLLER + Actions.ORDER_LIST);
+        Assertions.assertEquals(Paths.CONTROLLER + Actions.ORDER_LIST, result.getPath());
 
 
     }

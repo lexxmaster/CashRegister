@@ -29,7 +29,6 @@ public class CheckoutList implements ICommand {
         if (nonNull(req.getParameter(Parameters.PAGE))) {
             page = Integer.parseInt(req.getParameter(Parameters.PAGE));
         }
-        HttpSession session = req.getSession();
         CheckoutShiftDAO checkoutShiftDAO = new CheckoutShiftDAO();
 
         int numOfPages = checkoutShiftDAO.getNumOfPages(recordsPerPage);

@@ -42,15 +42,15 @@ public class OrderAddGoodsTest {
     @Test
     public void execute() {
         order.addGoods(goods1, amount1, availableAmount1);
-        Assertions.assertEquals(order.getGoodsList().size(), 1);
-        Assertions.assertEquals(order.getGoodsList().get(goods1).getAmount(), 1);
+        Assertions.assertEquals(1, order.getGoodsList().size());
+        Assertions.assertEquals(1, order.getGoodsList().get(goods1).getAmount());
         order.addGoods(goods2, amount2, availableAmount2);
-        Assertions.assertEquals(order.getGoodsList().size(), 2);
+        Assertions.assertEquals(2, order.getGoodsList().size());
         order.addGoods(goods1, amount1, availableAmount1);
-        Assertions.assertEquals(order.getGoodsList().size(), 2);
-        Assertions.assertEquals(order.getGoodsList().get(goods1).getAmount(), 2);
+        Assertions.assertEquals(2, order.getGoodsList().size());
+        Assertions.assertEquals(2, order.getGoodsList().get(goods1).getAmount());
         order.updateTotal();
-        Assertions.assertEquals(order.getTotal(), 4.0);
+        Assertions.assertEquals(4.0, order.getTotal());
     }
 
     @AfterEach

@@ -76,7 +76,7 @@ public class LoginTest {
             result = command.execute(request, response);
         }
 
-        Assertions.assertEquals(result.getPath(), Paths.CONTROLLER + Actions.HOME);
+        Assertions.assertEquals(Paths.CONTROLLER + Actions.HOME, result.getPath());
 
 
     }

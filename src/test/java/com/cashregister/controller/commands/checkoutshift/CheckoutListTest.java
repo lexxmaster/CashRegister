@@ -3,6 +3,7 @@ package com.cashregister.controller.commands.checkoutshift;
 import com.cashregister.controller.commands.CommandResult;
 import com.cashregister.controller.constants.Actions;
 import com.cashregister.controller.constants.Attributes;
+import com.cashregister.controller.constants.Parameters;
 import com.cashregister.controller.constants.Paths;
 import com.cashregister.model.dao.CheckoutShiftDAO;
 import com.cashregister.model.dao.UserDAO;
@@ -22,59 +23,62 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mockConstructionWithAnswer;
 
-public class CheckoutCreateTest {
+public class CheckoutListTest {
     HttpServletResponse response;
     HttpServletRequest request;
-    HttpSession session;
-    CheckoutCreate checkoutCreate;
-    CheckoutClose checkoutClose;
+    CheckoutList command;
     CheckoutShiftDAO checkoutShiftDAO;
+    List<CheckoutShift> checkoutShiftList;
     UserDAO userDAO;
     CommandResult result;
+    Warehouse warehouse;
+    CheckoutShift checkoutShift;
 
     @BeforeEach
     public void setUp(){
         response = mock(HttpServletResponse.class);
         request = mock(HttpServletRequest.class);
-        session = mock(HttpSession.class);
         userDAO = mock(UserDAO.class);
         checkoutShiftDAO = mock(CheckoutShiftDAO.class);
-
-        checkoutCreate = new CheckoutCreate();
-        checkoutClose = new CheckoutClose();
+        checkoutShiftList = new ArrayList<>();
+        warehouse = new Warehouse(1, "main");
+        checkoutShift = new CheckoutShift(warehouse);
+        command = new CheckoutList();
     }
 
     @Test
     public void execute() throws ServletException, IOException {
-        when(request.getSession()).thenReturn(session);
-        when(session.getAttribute(Attributes.WAREHOUSE)).thenReturn(new Warehouse(1, "main"));
-        when(session.getAttribute(Attributes.LOGIN)).thenReturn("cashier");
+        when(request.getParameter(Parameters.PAGE)).thenReturn("1");
 
-        when(userDAO.findByLogin(any(String.class))).thenReturn(Optional.of(new User(1, "admin", "")));
+        when(userDAO.findByLogin(any(String.class))).thenReturn(Optional.of(new User(1, "test", "")));
         when(checkoutShiftDAO.create(any(CheckoutShift.class))).thenReturn(true);
 
-        try (MockedConstruction<UserDAO> mockedUserDAO = mockConstructionWithAnswer(UserDAO.class, new Answer() {
+        try (MockedConstruction<CheckoutShiftDAO> mockedCheckoutShiftDAO = mockConstructionWithAnswer(CheckoutShiftDAO.class,
+                new Answer() {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
-                return Optional.of(new User(1, "admin", ""));
-            }
-        });
-             MockedConstruction<CheckoutShiftDAO> mockedCheckoutShiftDAO = mockConstructionWithAnswer(CheckoutShiftDAO.class, new Answer() {
-                 @Override
-                 public Object answer(InvocationOnMock invocation) throws Throwable {
-                     return Boolean.valueOf(true);
-                 }
-             });){
+                String methodName = invocation.getMethod().getName();
+                if (methodName.equals("getNumOfPages")) {
+                    return Integer.valueOf(1);
+                } else if (methodName.equals("findAllByPage")) {
+                    return checkoutShiftList;
+                }
+                return null;
 
-            result = checkoutCreate.execute(request, response);
+            }
+            })){
+            result = command.execute(request, response);
         }
 
-        Assertions.assertEquals(Paths.CONTROLLER + Actions.ORDER_LIST, result.getPath());
+        Assertions.assertEquals(Paths.CHECKOUT_LIST, result.getPath());
 
 
     }
@@ -83,10 +87,8 @@ public class CheckoutCreateTest {
     public void tearDown(){
         response = null;
         request = null;
-        session = null;
         userDAO = null;
         checkoutShiftDAO = null;
-        checkoutCreate = null;
-        checkoutClose = null;
+        command = null;
     }
 }
