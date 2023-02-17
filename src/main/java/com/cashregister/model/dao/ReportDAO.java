@@ -162,7 +162,7 @@ public class ReportDAO extends AbstractDAO<Long, Report>{
         try {
             report.setSum(resultSet.getDouble(TableFields.REPORT_SUM));
             report.setCheckAmount(resultSet.getInt(TableFields.REPORT_CHECK_AMOUNT));
-            report.setId(resultSet.getLong("id"));
+            report.setId(resultSet.getLong(1));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

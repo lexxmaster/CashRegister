@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:setLocale value="${user.language}"/>
-<fmt:setBundle basename="cra_language"/>
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="language"/>
 
 <header>
     <table>
@@ -31,5 +31,4 @@
 
         </tr>
     </table>
-
 </header>

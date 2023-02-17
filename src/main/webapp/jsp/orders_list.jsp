@@ -26,7 +26,7 @@
     </style>
 </head>
 <body>
-<%@include file="header.jsp"%>
+<ctgf:head/>
 <%@ include file="cashier_actions.jsp" %>
 <table>
     <tr>

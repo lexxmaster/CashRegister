@@ -5,6 +5,7 @@ import com.cashregister.controller.constants.Attributes;
 import com.cashregister.controller.constants.Paths;
 import com.cashregister.controller.services.UserAuthenticator;
 import com.cashregister.model.dao.UserDAO;
+import com.cashregister.model.entity.Role;
 import com.cashregister.model.entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
@@ -38,7 +39,13 @@ public class AuthorizationFilter implements Filter {
         final HttpSession session = httpRequest.getSession();
 
         if (nonNull(session) && nonNull(session.getAttribute(Attributes.LOGIN)) && nonNull(session.getAttribute(Attributes.ROLE))) {
-            chain.doFilter(request, response);
+//            Role role = (Role) session.getAttribute(Attributes.ROLE);
+//            if (AccessRules.checkAccess(role, action)) {
+                chain.doFilter(request, response);
+//            } else {
+//                //request.getRequestDispatcher(Paths.ACCESS_DENIED).forward(request, response);
+//                throw new ServletException();
+//            }
         } else if (nonNull(login)) {
             User user = null;
             try {
