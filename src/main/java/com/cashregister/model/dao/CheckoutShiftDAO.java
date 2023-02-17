@@ -17,6 +17,7 @@ public class CheckoutShiftDAO extends AbstractDAO<Long, CheckoutShift>{
     private static final String SELECT_OPEN_CHECKOUT_BY_USER = "SELECT checkout.id, checkout.checkout_date, checkout.closed, checkout.warehouse_id, checkout.user_id FROM cash_register.checkout_shift AS checkout WHERE checkout.warehouse_id = ? AND checkout.user_id = ? AND checkout.closed = ?";
     private static final String CREATE_CHECKOUT = "INSERT INTO checkout_shift (checkout_date, closed, warehouse_id, user_id) VALUES (?, ?, ?, ?);";
     private static final String UPDATE_CHECKOUT = "UPDATE checkout_shift SET closed = ? WHERE id = ?;";
+    private static final String GET_RECORDS_COUNT = "SELECT count(checkout.id) AS checkout_count FROM cash_register.checkout_shift AS checkout;";
 
     @Override
     public List<CheckoutShift> findAll() {
@@ -83,7 +84,29 @@ public class CheckoutShiftDAO extends AbstractDAO<Long, CheckoutShift>{
 
     @Override
     public int getRecordsCount() {
-        return 0;
+        Connection con = DBManager.getInstance().getConnection();
+        Statement stmt = null;
+        int count = 1;
+        try {
+            stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery(GET_RECORDS_COUNT);
+            while (resultSet.next()) {
+                count = resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                con.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return count;
     }
 
     public Optional<CheckoutShift> findOpenedCheckoutByUser(Warehouse warehouse, User user) {
