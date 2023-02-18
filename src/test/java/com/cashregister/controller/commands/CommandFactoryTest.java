@@ -1,9 +1,6 @@
 package com.cashregister.controller.commands;
 
-import com.cashregister.controller.commands.checkoutshift.CheckoutClose;
-import com.cashregister.controller.commands.checkoutshift.CheckoutCreate;
-import com.cashregister.controller.commands.checkoutshift.CheckoutList;
-import com.cashregister.controller.commands.checkoutshift.CheckoutOpen;
+import com.cashregister.controller.commands.checkoutshift.*;
 import com.cashregister.controller.commands.common.ChangeLanguage;
 import com.cashregister.controller.commands.common.Home;
 import com.cashregister.controller.commands.common.Login;

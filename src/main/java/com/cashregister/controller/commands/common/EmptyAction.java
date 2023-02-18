@@ -13,9 +13,6 @@ import java.io.IOException;
 public class EmptyAction implements ICommand {
     @Override
     public CommandResult execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final HttpServletRequest httpRequest = (HttpServletRequest) req;
-        final HttpSession session = httpRequest.getSession();
-
         return new CommandResult(req.getHeader("referer"), true);
     }
 }
