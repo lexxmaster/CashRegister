@@ -1,4 +1,4 @@
-package com.cashregister.controller.model.orders;
+package com.cashregister.model.orders;
 
 import com.cashregister.model.entity.CheckoutShift;
 import com.cashregister.model.entity.Goods;
