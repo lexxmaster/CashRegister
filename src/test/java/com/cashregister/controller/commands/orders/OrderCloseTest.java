@@ -1,13 +1,14 @@
-package com.cashregister.controller.commands.goods;
+package com.cashregister.controller.commands.orders;
 
 import com.cashregister.controller.commands.CommandResult;
-import com.cashregister.controller.commands.checkoutshift.CheckoutOpen;
+import com.cashregister.controller.commands.goods.GoodsCreate;
 import com.cashregister.controller.constants.Actions;
+import com.cashregister.controller.constants.Attributes;
 import com.cashregister.controller.constants.Parameters;
 import com.cashregister.controller.constants.Paths;
-import com.cashregister.model.dao.CheckoutShiftDAO;
 import com.cashregister.model.dao.GoodsDAO;
 import com.cashregister.model.entity.CheckoutShift;
+import com.cashregister.model.entity.Order;
 import com.cashregister.model.entity.Warehouse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,14 +27,15 @@ import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 
-public class GoodsCreateTest {
+public class OrderCloseTest {
     HttpServletResponse response;
     HttpServletRequest request;
     HttpSession session;
-    GoodsCreate command;
+    OrderClose command;
     CommandResult result;
     Warehouse warehouse;
     CheckoutShift checkoutShift;
+    Order order;
 
     @BeforeEach
     public void setUp(){
@@ -43,38 +45,26 @@ public class GoodsCreateTest {
 
         warehouse = new Warehouse(1, "main");
         checkoutShift = new CheckoutShift(warehouse);
-        command = new GoodsCreate();
+        order = new Order(warehouse, checkoutShift);
+        command = new OrderClose();
     }
 
     @Test
     public void execute() throws ServletException, IOException {
         when(request.getSession()).thenReturn(session);
-        when(request.getParameter(Parameters.GOODS_NAME)).thenReturn("test");
-        when(request.getParameter(Parameters.GOODS_SCANCODE)).thenReturn("000");
-        when(request.getParameter(Parameters.GOODS_PRICE)).thenReturn("10.0");
-        when(request.getParameter(Parameters.GOODS_WEIGHT)).thenReturn("on");
+        when(session.getAttribute(Attributes.ORDER)).thenReturn(order);
 
         try (MockedConstruction<GoodsDAO> mockedGoodsDAO = mockConstructionWithAnswer(GoodsDAO.class, new Answer() {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
-                String action = invocation.getMethod().getName();
-                if (action.equals("findByScancode")) {
-                    return Optional.ofNullable(null);
-                } else if (action.equals("findByName")) {
-                    return Optional.ofNullable(null);
-                } else if (action.equals("create")) {
-                    return Boolean.valueOf(true);
-                }
-                return null;
+                return Boolean.valueOf(true);
             }
         });){
 
             result = command.execute(request, response);
         }
 
-        Assertions.assertEquals(Paths.CONTROLLER + Actions.GOODS_LIST, result.getPath());
-
-
+        Assertions.assertEquals(Paths.CONTROLLER + Actions.ORDER_LIST, result.getPath());
     }
 
     @AfterEach
@@ -86,5 +76,6 @@ public class GoodsCreateTest {
         result = null;
         warehouse = null;
         checkoutShift = null;
+        order = null;
     }
 }

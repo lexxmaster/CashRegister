@@ -23,8 +23,7 @@ public class OrderCreate implements ICommand {
     public CommandResult execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         if (session.getAttribute(Attributes.CHECKOUT_SHIFT) == null) {
-            resp.sendRedirect(Paths.CONTROLLER + Actions.ORDER_LIST);
-            return null;
+            return new CommandResult(Paths.CONTROLLER + Actions.ORDER_LIST, true);
         }
         String login = (String) session.getAttribute(Attributes.LOGIN);
         CheckoutShift checkoutShift = (CheckoutShift) session.getAttribute(Attributes.CHECKOUT_SHIFT);
