@@ -32,7 +32,7 @@ public class CheckoutCloseTest {
     HttpServletRequest request;
     HttpSession session;
     CheckoutCreate checkoutCreate;
-    CheckoutClose checkoutClose;
+    CheckoutClose command;
     CheckoutShiftDAO checkoutShiftDAO;
     UserDAO userDAO;
     CommandResult result;
@@ -49,7 +49,7 @@ public class CheckoutCloseTest {
 
         warehouse = new Warehouse(1, "main");
         checkoutShift = new CheckoutShift(warehouse);
-        checkoutClose = new CheckoutClose();
+        command = new CheckoutClose();
     }
 
     @Test
@@ -75,7 +75,7 @@ public class CheckoutCloseTest {
                  }
              });){
 
-            result = checkoutClose.execute(request, response);
+            result = command.execute(request, response);
         }
 
         Assertions.assertEquals(Paths.CONTROLLER + Actions.ORDER_LIST, result.getPath());
@@ -91,6 +91,6 @@ public class CheckoutCloseTest {
         userDAO = null;
         checkoutShiftDAO = null;
         checkoutCreate = null;
-        checkoutClose = null;
+        command = null;
     }
 }

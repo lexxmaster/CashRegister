@@ -27,9 +27,9 @@ public class UserList implements ICommand {
         }
         UserDAO userDao = new UserDAO();
         int numOfPages = getNumOfPages(userDao, recordsPerPage);
-        List<User> goodsList = userDao.findAllByPage((page - 1) * recordsPerPage, recordsPerPage);
+        List<User> userList = userDao.findAllByPage((page - 1) * recordsPerPage, recordsPerPage);
 
-        req.setAttribute(Attributes.USER_LIST, goodsList);
+        req.setAttribute(Attributes.USER_LIST, userList);
         req.setAttribute(Attributes.CURRENT_PAGE, page);
         req.setAttribute(Attributes.NUMBER_OF_PAGES, numOfPages);
 

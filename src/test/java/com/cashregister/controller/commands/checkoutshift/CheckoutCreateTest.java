@@ -75,7 +75,7 @@ public class CheckoutCreateTest {
         }
 
         Assertions.assertEquals(Paths.CONTROLLER + Actions.ORDER_LIST, result.getPath());
-
+        Assertions.assertEquals(true, result.isRedirect());
 
     }
 
