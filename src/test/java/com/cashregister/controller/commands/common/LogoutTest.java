@@ -27,9 +27,8 @@ import java.io.IOException;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.mockConstructionWithAnswer;
 
-public class LoginTest {
+public class LogoutTest {
     HttpServletResponse response;
     HttpServletRequest request;
     HttpSession session;

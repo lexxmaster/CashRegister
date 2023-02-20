@@ -1,4 +1,4 @@
-package com.cashregister.model.orders;
+package com.cashregister.controller.model.entity.orders;
 
 import com.cashregister.model.entity.GoodsAmount;
 import org.junit.jupiter.api.AfterEach;
