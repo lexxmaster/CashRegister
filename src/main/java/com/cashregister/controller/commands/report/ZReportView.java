@@ -26,6 +26,6 @@ public class ZReportView implements ICommand {
         Report report = reportDAO.findById(report_id).orElse(null);
         req.setAttribute(Attributes.REPORT, report);
 
-        return new CommandResult(Paths.X_REPORT);
+        return new CommandResult(Paths.Z_REPORT);
     }
 }

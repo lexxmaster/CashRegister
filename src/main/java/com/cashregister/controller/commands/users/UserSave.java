@@ -62,7 +62,7 @@ public class UserSave implements ICommand {
         if (id == 0) {
             userDAO.create(user);
         } else {
-            userDAO.create(user);
+            userDAO.update(user);
         }
 
         return new CommandResult(Paths.CONTROLLER + Actions.USER_LIST, true);

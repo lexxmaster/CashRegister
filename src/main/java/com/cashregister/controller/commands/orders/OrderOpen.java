@@ -26,7 +26,6 @@ public class OrderOpen implements ICommand {
 
         CommandResult result = new CommandResult();
         if (nonNull(order)) {
-            recordCurrentPage(req, Paths.ORDER);
             req.setAttribute(Attributes.ORDER, order);
             session.setAttribute(Attributes.ORDER, order);
 

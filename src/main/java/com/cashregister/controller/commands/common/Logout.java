@@ -14,17 +14,13 @@ import java.io.IOException;
 public class Logout implements ICommand {
     @Override
     public CommandResult execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final HttpServletRequest httpRequest = (HttpServletRequest) req;
-
-        final HttpSession session = httpRequest.getSession();
+        final HttpSession session = req.getSession();
 
         session.removeAttribute(Attributes.LOGIN);
         session.removeAttribute(Attributes.USER_ID);
         session.removeAttribute(Attributes.ROLE);
         session.removeAttribute(Attributes.WAREHOUSE);
         session.removeAttribute(Attributes.CHECKOUT_SHIFT);
-
-        recordCurrentPage(req, Paths.LOGIN);
 
         return new CommandResult(Paths.LOGIN);
     }
