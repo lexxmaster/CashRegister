@@ -1,9 +1,6 @@
 package com.cashregister.controller.commands;
 
-import com.cashregister.controller.commands.checkoutshift.CheckoutClose;
-import com.cashregister.controller.commands.checkoutshift.CheckoutCreate;
-import com.cashregister.controller.commands.checkoutshift.CheckoutList;
-import com.cashregister.controller.commands.checkoutshift.CheckoutOpen;
+import com.cashregister.controller.commands.checkoutshift.*;
 import com.cashregister.controller.commands.common.*;
 import com.cashregister.controller.commands.goods.GoodsCreate;
 import com.cashregister.controller.commands.goods.GoodsList;
@@ -50,6 +47,9 @@ public class CommandFactory {
                 break;
             case Actions.CHECKOUT_CLOSE:
                 command = new CheckoutClose();
+                break;
+            case Actions.CHECKOUT_EXIT:
+                command = new CheckoutExit();
                 break;
             case Actions.ORDER_LIST:
                 command = new OrderList();

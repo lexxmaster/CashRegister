@@ -26,10 +26,18 @@
                         <input class="button" type="submit" value=<fmt:message key="cashier_actions.x_report"/>>
                     </form>
                 </th>
+                <c:if test="${!checkout_shift.closed}">
+                    <th>
+                        <form method="get" action="controller">
+                            <input type="hidden" name="action" value="z_report_create">
+                            <input class="button" type="submit" value=<fmt:message key="cashier_actions.z_report"/>>
+                        </form>
+                    </th>
+                </c:if>
                 <th>
                     <form method="get" action="controller">
-                        <input type="hidden" name="action" value="z_report_create">
-                        <input class="button" type="submit" value=<fmt:message key="cashier_actions.z_report"/>>
+                        <input type="hidden" name="action" value="checkout_exit">
+                        <input class="button" type="submit" value=<fmt:message key="cashier_actions.checkout_close"/>>
                     </form>
                 </th>
             </c:if>

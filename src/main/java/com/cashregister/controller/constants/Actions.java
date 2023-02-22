@@ -8,6 +8,7 @@ public class Actions {
     public static final String CHECKOUT_OPEN = "checkout_open";
     public static final String CHECKOUT_CREATE = "checkout_create";
     public static final String CHECKOUT_CLOSE = "checkout_close";
+    public static final String CHECKOUT_EXIT = "checkout_exit";
     public static final String ORDER_LIST = "order_list";
     public static final String ORDER_CREATE = "create_order";
     public static final String ORDER_OPEN = "order_open";
