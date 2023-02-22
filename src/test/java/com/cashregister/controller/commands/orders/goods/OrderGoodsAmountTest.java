@@ -74,9 +74,9 @@ public class OrderGoodsAmountTest {
                      if (action.equals("findById")) {
                          return Optional.of(goods);
                      } else if (action.equals("getAvailableAmount")) {
-                         return Double.valueOf(100.0);
+                         return 100.0;
                      } else if (action.equals("setAvailableAmount")) {
-                         return Boolean.valueOf(true);
+                         return Boolean.TRUE;
                      }
                      return null;
                  }

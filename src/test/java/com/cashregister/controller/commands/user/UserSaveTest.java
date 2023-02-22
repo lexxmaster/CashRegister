@@ -57,7 +57,7 @@ public class UserSaveTest {
         try (MockedConstruction<UserDAO> mockedUserDAO = mockConstructionWithAnswer(UserDAO.class, new Answer() {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
-                return Boolean.valueOf(true);
+                return Boolean.TRUE;
             }
         })){
 
@@ -72,7 +72,7 @@ public class UserSaveTest {
         try (MockedConstruction<UserDAO> mockedUserDAO = mockConstructionWithAnswer(UserDAO.class, new Answer() {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
-                return Boolean.valueOf(true);
+                return Boolean.TRUE;
             }
         })){
 

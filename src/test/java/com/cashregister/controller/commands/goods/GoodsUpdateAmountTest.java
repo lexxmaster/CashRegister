@@ -57,7 +57,7 @@ public class GoodsUpdateAmountTest {
         try (MockedConstruction<GoodsDAO> mockedGoodsDAO = mockConstructionWithAnswer(GoodsDAO.class, new Answer() {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
-                return Boolean.valueOf(true);
+                return Boolean.TRUE;
             }
         });){
 

@@ -62,11 +62,11 @@ public class OrderListTest {
             public Object answer(InvocationOnMock invocation) throws Throwable {
                 String action = invocation.getMethod().getName();
                 if (action.equals("getRecordsCount")) {
-                    return Integer.valueOf(10);
+                    return 10;
                 } else if (action.equals("findByCheckoutByPage")) {
                     return orderList;
                 }
-                return Boolean.valueOf(true);
+                return Boolean.TRUE;
             }
         })){
 

@@ -60,7 +60,7 @@ public class OrderCreateTest {
         try (MockedConstruction<OrderDAO> mockedOrderDAO = mockConstructionWithAnswer(OrderDAO.class, new Answer() {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
-                return Boolean.valueOf(true);
+                return Boolean.TRUE;
             }
         });
              MockedConstruction<UserDAO> mockedUserDAO = mockConstructionWithAnswer(UserDAO.class, new Answer() {

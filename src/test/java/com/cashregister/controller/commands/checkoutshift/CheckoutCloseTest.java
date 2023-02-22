@@ -71,7 +71,7 @@ public class CheckoutCloseTest {
              MockedConstruction<CheckoutShiftDAO> mockedCheckoutShiftDAO = mockConstructionWithAnswer(CheckoutShiftDAO.class, new Answer() {
                  @Override
                  public Object answer(InvocationOnMock invocation) throws Throwable {
-                     return Boolean.valueOf(true);
+                     return Boolean.TRUE;
                  }
              });){
 

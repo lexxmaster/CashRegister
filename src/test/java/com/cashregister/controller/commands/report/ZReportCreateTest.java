@@ -76,13 +76,13 @@ public class ZReportCreateTest {
              MockedConstruction<CheckoutShiftDAO> mockedCheckoutShiftDAO = mockConstructionWithAnswer(CheckoutShiftDAO.class, new Answer() {
                  @Override
                  public Object answer(InvocationOnMock invocation) throws Throwable {
-                     return Boolean.valueOf(true);
+                     return Boolean.TRUE;
                  }
              });
              MockedConstruction<ReportDAO> mockedReportDAO = mockConstructionWithAnswer(ReportDAO.class, new Answer() {
                  @Override
                  public Object answer(InvocationOnMock invocation) throws Throwable {
-                     return Boolean.valueOf(true);
+                     return Boolean.TRUE;
                  }
              });
              MockedConstruction<ReportGenerator> mockedReportGenerator = mockConstructionWithAnswer(ReportGenerator.class, new Answer() {

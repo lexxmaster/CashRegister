@@ -63,7 +63,7 @@ public class GoodsCreateTest {
                 } else if (action.equals("findByName")) {
                     return Optional.ofNullable(null);
                 } else if (action.equals("create")) {
-                    return Boolean.valueOf(true);
+                    return Boolean.TRUE;
                 }
                 return null;
             }

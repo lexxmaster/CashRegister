@@ -67,7 +67,7 @@ public class CheckoutListTest {
             public Object answer(InvocationOnMock invocation) throws Throwable {
                 String methodName = invocation.getMethod().getName();
                 if (methodName.equals("getNumOfPages")) {
-                    return Integer.valueOf(1);
+                    return 1;
                 } else if (methodName.equals("findAllByPage")) {
                     return checkoutShiftList;
                 }

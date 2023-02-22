@@ -57,7 +57,7 @@ public class GoodsUpdatePriceTest {
                 if (action.equals("findById")) {
                     return Optional.of(goods);
                 } else if (action.equals("update")) {
-                    return Boolean.valueOf(true);
+                    return Boolean.TRUE;
                 }
                 return null;
             }

@@ -61,11 +61,11 @@ public class GoodsListTest {
             public Object answer(InvocationOnMock invocation) throws Throwable {
                 String action = invocation.getMethod().getName();
                 if (action.equals("getRecordsCount")) {
-                    return Integer.valueOf(100);
+                    return 100;
                 } else if (action.equals("findAllByPage")) {
                     return goodsList;
                 } else if (action.equals("getAvailableAmount")) {
-                    return Double.valueOf(10.0);
+                    return 10.0;
                 }
                 return null;
             }

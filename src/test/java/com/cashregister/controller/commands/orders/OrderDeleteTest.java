@@ -66,7 +66,7 @@ public class OrderDeleteTest {
                 if (action.equals("findById")) {
                     return Optional.of(order);
                 } else if (action.equals("delete")) {
-                    return Boolean.valueOf(true);
+                    return Boolean.TRUE;
                 }
                 return null;
             }
@@ -76,9 +76,9 @@ public class OrderDeleteTest {
                  public Object answer(InvocationOnMock invocation) throws Throwable {
                      String action = invocation.getMethod().getName();
                      if (action.equals("getAvailableAmount")) {
-                         return Double.valueOf(1.0);
+                         return 1.0;
                      } else if (action.equals("setAvailableAmount")) {
-                         return Boolean.valueOf(true);
+                         return Boolean.TRUE;
                      }
                      return null;
                  }
